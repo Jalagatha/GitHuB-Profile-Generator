@@ -1,0 +1,62 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+#root {
+  text-align: center;
+}
+.profile{
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.profile h2{
+  color: white;
+  font-size: 3rem;
+}
+.profile input{
+  padding: 20px;
+  width: 500px;
+  text-align: center;
+  font-size: 2rem;
+  color: blue;
+  margin-top: 10px;
+  border-radius: 5px;
+  outline: none;
+}
+.details{
+  padding: 50px 5%;
+}
+.card img{
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  border: 5px solid green;
+}
+.flex{
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+   gap: 10px;
+   text-align: left;
+}
+.stats{
+  padding: 20px 0;
+}
+.stats div{
+  background-color: black;
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+.repo{
+  flex: 22%;
+  background-color: teal;
+  color: white;
+  padding: 20px;
+}

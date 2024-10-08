@@ -1,0 +1,77 @@
+import { useState, useEffect } from 'react'
+import { domain } from './Domain';
+import './App.css'
+
+function App() {
+  const [loading, setLoading] = useState(false)
+  const [profile, setProfile] = useState(null)
+  const [search, setSearch] = useState("")
+
+  async function getData(name) {
+    setLoading(true)
+    const url = `${domain}/${name}`;
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+      }
+
+      const res = await response.json();
+      console.log(res);
+      setProfile(res)
+
+    } catch (error) {
+      console.error(error.message);
+    }
+    finally {
+      setLoading(false)
+    }
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    getData(search)
+  }
+
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+
+
+  return (
+    <div>
+      <h2>Profile Checker</h2>
+      <form onSubmit={handleSubmit}>
+        <input type='search' name='search input' value={search} onChange={(e) => setSearch(e.target.value)} />
+        <button type='submit'>search name</button>
+      </form>
+      {loading && <p>loading information</p>}
+      {profile && 
+        <div>
+          <img src={profile.avatar_url}/>
+          <h2>{profile.name}</h2>
+          <a href={profile.html_url}>@{profile.login}</a>
+          <p style={{display: "none"}}>{JSON.stringify(profile)}</p>
+          <div>
+            <p>{profile.location}</p>
+            <p>{new Date(profile.created_at).toLocaleDateString('en-US', options)}</p>
+          </div>
+          <div>
+            <div>
+              <p>{profile.public_repos}</p>
+              <p>REPOSITORIES</p>
+            </div>
+            <div>
+              <p>{profile.followers}</p>
+              <p>FOLLOWERS</p>
+            </div>
+            <div>
+              <p>{profile.following}</p>
+              <p>FOLLOWING</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  )
+}
+
+export default App
