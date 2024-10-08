@@ -59,7 +59,7 @@ const Details = () => {
         <div className='details'>
             {loading && <p>Loading...</p>}
             {!profile && <p>No profile found.</p>}
-            <p>This is the icon </p>
+           
             {profile &&
                 <div className='card'>
                     <img src={profile.avatar_url} />
